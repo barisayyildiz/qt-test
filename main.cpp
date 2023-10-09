@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    SomeClass testClass;
+    //SomeClass testClass;
+    qmlRegisterType<SomeClass>("Monty", 1, 0, "SomeClass");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
@@ -30,10 +31,6 @@ int main(int argc, char *argv[])
     // Expose the C++ functions to QML
     QObject *rootObject = engine.rootObjects().first();
     // Add necessary connections and signals between QML and C++
-
-    QQmlContext *rootContext = engine.rootContext();
-    rootContext->setContextProperty("classA", &testClass);
-
 
     return app.exec();
 }
